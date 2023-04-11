@@ -1,7 +1,15 @@
 package com.solvd.ta.lab1;
 
+/*
+In this example, I implemented the Merge Sort algorithm as the second sorting algorithm.
+I also added a helper method generateRandomArray() to generate a big array of random numbers.
+The main() method measures the execution time (in milliseconds) for both Bubble Sort and Merge Sort on the generated array,
+and prints out the results.
+*/
+
 import java.util.Arrays;
 import java.util.Random;
+
 
 public class SortingComparison {
 
