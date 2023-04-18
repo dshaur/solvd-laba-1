@@ -25,5 +25,9 @@ bin/
 ### VS Code ###
 .vscode/
 
+.idea
+
+SolvdLabaProjects.iml
+
 ### Mac OS ###
 .DS_Store
