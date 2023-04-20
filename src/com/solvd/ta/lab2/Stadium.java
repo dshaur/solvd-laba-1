@@ -8,14 +8,18 @@ package com.solvd.ta.lab2;
 import java.util.Objects;
 
 class Stadium {
+
+    // Attributes and variables
     private String name;
     private int capacity;
 
+    // Constructor
     Stadium(String name, int capacity) {
         this.name = name;
         this.capacity = capacity;
     }
 
+    // Getters and Setters
     public String getName() {
         return name;
     }
@@ -32,6 +36,7 @@ class Stadium {
         this.capacity = capacity;
     }
 
+    // Override of the toString() method from Objects Class
     @Override
     public String toString() {
         return "Stadium{" +
@@ -40,6 +45,7 @@ class Stadium {
                 '}';
     }
 
+    // Override of the equals() method from Objects Class
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -49,6 +55,7 @@ class Stadium {
                 Objects.equals(name, stadium.name);
     }
 
+    // Override of the hashCode() method from Objects Class
     @Override
     public int hashCode() {
         return Objects.hash(name, capacity);

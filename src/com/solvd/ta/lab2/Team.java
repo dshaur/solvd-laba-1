@@ -2,13 +2,16 @@ package com.solvd.ta.lab2;
 
 /*
  * This class represents the Team model with attributes name, coach, goalkeeper, defenders, midfielders and strikers.
- * It provides getter and setter methods for each attribute, as well as the method playMatch to play a match against an opponent.
+ * It provides getter and setter methods for each attribute, as well as the method playMatch to play a match against
+ *  an opponent.
  */
 
 import java.util.Arrays;
 import java.util.Objects;
 
 class Team {
+
+    // Attributes and variables
     private String name;
     private Coach coach;
     private Goalkeeper goalkeeper;
@@ -16,6 +19,7 @@ class Team {
     private Midfielder[] midfielders;
     private Striker[] strikers;
 
+    // Constructor
     Team(String name, Coach coach, Goalkeeper goalkeeper, Defender[] defenders, Midfielder[] midfielders, Striker[] strikers) {
         this.name = name;
         this.coach = coach;
@@ -25,6 +29,7 @@ class Team {
         this.strikers = strikers;
     }
 
+    // Getters and Setters
     public String getName() {
         return name;
     }
@@ -73,6 +78,7 @@ class Team {
         this.strikers = strikers;
     }
 
+    // Override of the toString() method from Objects Class
     @Override
     public String toString() {
         return "Team{" +
@@ -82,6 +88,7 @@ class Team {
                 '}';
     }
 
+    // Override of the equals() method from Objects Class
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,6 +102,7 @@ class Team {
                 Arrays.equals(strikers, team.strikers);
     }
 
+    // Override of the hashCode() method from Objects Class
     @Override
     public int hashCode() {
         int result = Objects.hash(name, coach, goalkeeper);
@@ -104,8 +112,13 @@ class Team {
         return result;
     }
 
+    /*
+     * PlayMatch() method that allows two teams to compete against each other. Iterators go through all defenders,
+     * midfielders and strikers and perform actions.
+     */
     public void playMatch(Team opponent) {
         System.out.println(this.getName() + " vs " + opponent.getName());
+
         for (Player player : this.getDefenders()) {
             player.performAction();
         }

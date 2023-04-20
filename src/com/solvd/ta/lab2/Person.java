@@ -16,11 +16,13 @@ abstract class Person {
     private String name;
     private int age;
 
+    // Constructor
     Person(String name, int age) {
         this.name = name;
         this.age = age;
     }
 
+    // Getters and Setters
     public String getName() {
         return name;
     }
@@ -37,6 +39,7 @@ abstract class Person {
         this.age = age;
     }
 
+    // Override of the toString() method from Objects Class
     @Override
     public String toString() {
         return "Person{" +
@@ -45,6 +48,7 @@ abstract class Person {
                 '}';
     }
 
+    // Override of the equals() method from Objects Class
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,6 +58,7 @@ abstract class Person {
                 Objects.equals(name, person.name);
     }
 
+    // Override of the hashCode() method from Objects Class
     @Override
     public int hashCode() {
         return Objects.hash(name, age);

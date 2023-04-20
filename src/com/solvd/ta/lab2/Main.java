@@ -69,6 +69,15 @@ public class Main {
         // This code creates a new match object with the given home team, away team, referee and stadium.
         // The start() method is then called to start the match.
         Match match = new Match(homeTeam, awayTeam, referee, stadium);
+
+        // Method calls for each Team's coach to motivate their players before the match
+        homeCoach.motivateTeam();
+        awayCoach.motivateTeam();
+
+        // Method call for the Referee to signal the start of the match
+        referee.whistle();
+
+        // Method for starting the match between the teams
         match.start();
     }
 }
