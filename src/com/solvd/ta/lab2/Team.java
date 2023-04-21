@@ -111,22 +111,4 @@ class Team {
         result = 31 * result + Arrays.hashCode(strikers);
         return result;
     }
-
-    /*
-     * PlayMatch() method that allows two teams to compete against each other. Iterators go through all defenders,
-     * midfielders and strikers and perform actions.
-     */
-    public void playMatch(Team opponent) {
-        System.out.println(this.getName() + " vs " + opponent.getName());
-
-        for (Player player : this.getDefenders()) {
-            player.performAction();
-        }
-        for (Player player : this.getMidfielders()) {
-            player.performAction();
-        }
-        for (Player player : this.getStrikers()) {
-            player.performAction();
-        }
-    }
 }

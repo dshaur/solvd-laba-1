@@ -66,8 +66,30 @@ class Match {
      */
     public void start() {
         System.out.println("Match started!");
-        homeTeam.playMatch(awayTeam);
-        awayTeam.playMatch(homeTeam);
+
+        // Perform actions for the home team
+        System.out.println(homeTeam.getName() + " vs " + awayTeam.getName());
+        for (Player player : homeTeam.getDefenders()) {
+            player.performAction();
+        }
+        for (Player player : homeTeam.getMidfielders()) {
+            player.performAction();
+        }
+        for (Player player : homeTeam.getStrikers()) {
+            player.performAction();
+        }
+
+        // Perform actions for the away team
+        for (Player player : awayTeam.getDefenders()) {
+            player.performAction();
+        }
+        for (Player player : awayTeam.getMidfielders()) {
+            player.performAction();
+        }
+        for (Player player : awayTeam.getStrikers()) {
+            player.performAction();
+        }
+
         System.out.println("Match ended!");
     }
 }
