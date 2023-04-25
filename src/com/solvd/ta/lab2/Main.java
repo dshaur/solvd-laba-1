@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         // Create a stadium
-        Stadium stadium = new Stadium("Soccer Stadium", 50000);
+        Stadium stadium = new Stadium("Santiago Bernabeu", 50000);
         // Create a referee
         Referee referee = new Referee("John Smith", 45);
         // Create players for home team
