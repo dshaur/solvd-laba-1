@@ -6,24 +6,20 @@ package com.solvd.ta.lab2;
  * and a method called motivateTeam() which prints a motivational message.
  */
 
-class Coach extends Person {
+class Coach extends Person implements Coachable, Cheerable {
 
     // Constructor
     Coach(String name, int age) {
         super(name, age);
     }
 
-    public void giveInstructions(String instructions) {
-        System.out.println(this.getName() + ": " + instructions);
-    }
-
-    public void motivatePlayer(Player player) {
-        // Default behavior - do nothing for now
-    }
-
-
     // motivateTeam() method
-    public void motivateTeam() {
-        System.out.println("Motivating the team...");
+    public void instructTeam() {
+        System.out.println("Instructing the team...");
+    }
+
+    // cheer() method
+    public void cheer() {
+        System.out.println(this.getName() + " is cheering up his team...");
     }
 }

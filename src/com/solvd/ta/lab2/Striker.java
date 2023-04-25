@@ -21,6 +21,7 @@ class Striker extends Player {
             System.out.println(getName() + " scored a goal!");
             if (this.getTeam().equals("Home Team")) { // Check if the striker belongs to the home team
                 Match.getScore().homeScored(); // The home team scores if the striker belongs to the home team
+
             } else {
                 Match.getScore().awayScored(); // The away team scores if the striker belongs to the away team
             }

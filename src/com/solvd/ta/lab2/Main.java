@@ -45,13 +45,19 @@ public class Main {
         Coach homeCoach = new Coach("Peter", 56);
         Coach awayCoach = new Coach("Edward", 49);
 
-        homeCoach.motivateTeam();
-        awayCoach.motivateTeam();
+        // Coaches give team instructions
+        homeCoach.instructTeam();
+        awayCoach.instructTeam();
 
         // Create a match
         Match match = new Match(homeTeam, awayTeam, stadium, referee);
 
         // Play the match
         match.playMatch();
+
+        // After match ends, coaches cheer up their teams
+        homeCoach.cheer();
+        awayCoach.cheer();
+
     }
 }
