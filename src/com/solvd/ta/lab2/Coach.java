@@ -15,7 +15,7 @@ class Coach extends Person implements Coachable, Cheerable {
 
     // motivateTeam() method
     public void instructTeam() {
-        System.out.println("Instructing the team...");
+        System.out.println(this.getName() + " is instructing his team...");
     }
 
     // cheer() method
