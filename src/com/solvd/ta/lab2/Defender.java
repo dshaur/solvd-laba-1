@@ -2,20 +2,30 @@ package com.solvd.ta.lab2;
 
 /*
  * This class is a child class of Player and is used to represent a Defender in a game.
- * It has a constructor which takes in a name, age and number, and sets the position to "Defender".
- * It also contains an overridden method to perform the action of a Defender, which is to clear the ball.
+ * It has a constructor which takes in a name, age and number, and sets the team.
  */
 
-class Defender extends Player {
+import java.util.Random;
 
-    // Constructor
-    Defender(String name, int age, int number) {
-        super(name, age, number, "Defender");
+class Defender extends Player {
+    public Defender(String name, int age, int number, String team) {
+        super(name, age, number, team);
     }
 
-    // Override of the performAction() method from Player Class
     @Override
-    void performAction() {
-        System.out.println("Clearing the ball...");
+    public void performAction() {
+        // Simulate the defender's ability to stop a goal
+
+        Random random = new Random();
+        if (random.nextDouble() < 0.9) {
+            System.out.println(getName() + " prevented a goal from being scored!");
+        } else {
+            System.out.println(getName() + " gave the opposing team a penalty. They scored a goal!");
+            if (this.getTeam().equals("Home Team")) { // Check if the defender belongs to the home team
+                Match.getScore().awayScored(); // The away team scores if the defender belongs to the home team
+            } else {
+                Match.getScore().homeScored(); // The home team scores if the defender belongs to the away team
+            }
+        }
     }
 }

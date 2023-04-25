@@ -10,13 +10,13 @@ abstract class Player extends Person {
 
     // Attributes and variables
     private int number;
-    private String position;
+    private String team;
 
     // Constructor
-    Player(String name, int age, int number, String position) {
+    Player(String name, int age, int number, String team) {
         super(name, age);
         this.number = number;
-        this.position = position;
+        this.team = team;
     }
 
     // Getters and Setters
@@ -28,12 +28,12 @@ abstract class Player extends Person {
         this.number = number;
     }
 
-    public String getPosition() {
-        return position;
+    public String getTeam() {
+        return team;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setTeam(String team) {
+        this.team = team;
     }
 
     // Abstract method to be overridden in subclass

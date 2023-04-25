@@ -8,14 +8,14 @@ package com.solvd.ta.lab2;
 class Midfielder extends Player {
 
     // Constructor
-    Midfielder(String name, int age, int number) {
-        super(name, age, number, "Midfielder");
+    public Midfielder(String name, int age, int number, String teamName) {
+        super(name, age, number, teamName);
     }
 
-    // Override of the performAction() method from Player Class
     @Override
-    void performAction() {
-        System.out.println("Making a pass...");
+    public void performAction() {
+        // Simulate the midfielders' ability to pass the ball
+        System.out.println(getName() + " is passing the ball.");
     }
 }
 

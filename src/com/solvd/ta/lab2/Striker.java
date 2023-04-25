@@ -6,17 +6,27 @@ package com.solvd.ta.lab2;
  * The performAction method is overridden to print "Scoring a goal..." when called.
  */
 
-class Striker extends Player {
+import java.util.Random;
 
-    // Constructor
-    Striker(String name, int age, int number) {
-        super(name, age, number, "Striker");
+class Striker extends Player {
+    public Striker(String name, int age, int number, String team) {
+        super(name, age, number, team);
     }
 
-    // Override of the performAction() method from Player Class
     @Override
-    void performAction() {
-        System.out.println("Scoring a goal...");
+    public void performAction() {
+        // Simulate the striker's goal-scoring ability
+        Random random = new Random();
+        if (random.nextDouble() < 0.4) {
+            System.out.println(getName() + " scored a goal!");
+            if (this.getTeam().equals("Home Team")) { // Check if the striker belongs to the home team
+                Match.getScore().homeScored(); // The home team scores if the striker belongs to the home team
+            } else {
+                Match.getScore().awayScored(); // The away team scores if the striker belongs to the away team
+            }
+        } else {
+            System.out.println(getName() + " missed.");
+        }
     }
 }
 

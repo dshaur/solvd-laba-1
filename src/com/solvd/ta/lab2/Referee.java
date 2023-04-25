@@ -14,6 +14,6 @@ class Referee extends Person {
 
     // whistle() method
     public void whistle() {
-        System.out.println("Whistling...");
+        System.out.println("The referee " + this.getName() + " is whistling...");
     }
 }

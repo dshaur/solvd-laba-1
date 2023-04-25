@@ -3,44 +3,34 @@ package com.solvd.ta.lab2;
 /*
  * This is the class for representing matches. It has four fields,
  * homeTeam, awayTeam, referee, and stadium, to store related objects.
- * The start() method is provided to start the match, which involves
+ * The playMatch() method is provided to start the match, which involves
  * letting both homeTeam and awayTeam play against each other.
  */
+
+import java.util.ArrayList;
+import java.util.Random;
 
 class Match {
 
     // Attributes and variables
-    private Team homeTeam;
-    private Team awayTeam;
+    private final ArrayList<Player> homeTeam;
+    private final ArrayList<Player> awayTeam;
     private Referee referee;
     private Stadium stadium;
 
+    private static final Score score = new Score();
+    private static final Random random = new Random();
 
     /* This is the constructor of the Match class which is used to initialize the fields homeTeam, awayTeam, referee
     and stadium with the values specified in the parameters. */
-    Match(Team homeTeam, Team awayTeam, Referee referee, Stadium stadium) {
+    public Match(ArrayList<Player> homeTeam, ArrayList<Player> awayTeam, Stadium stadium, Referee referee) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
-        this.referee = referee;
         this.stadium = stadium;
+        this.referee = referee;
     }
 
     // Setters and Getters from hw2 practice
-    public Team getHomeTeam() {
-        return homeTeam;
-    }
-
-    public void setHomeTeam(Team homeTeam) {
-        this.homeTeam = homeTeam;
-    }
-
-    public Team getAwayTeam() {
-        return awayTeam;
-    }
-
-    public void setAwayTeam(Team awayTeam) {
-        this.awayTeam = awayTeam;
-    }
 
     public Referee getReferee() {
         return referee;
@@ -60,36 +50,51 @@ class Match {
 
     /*
      * This class represents a single match between two teams.
-     * It stores the two teams playing in the match and contains a method to start the match.
-     * When the start() method is called, it will cause the two teams to play against each other.
-     * This is a simplified version that will incorporate more complex logic in the future as the project advances.
      */
-    public void start() {
-        System.out.println("Match started!");
+    public void playMatch() {
+        System.out.println("The match between Boca Juniors and River Plate starts now at the Santiago Bernabeu stadium!");
 
-        // Perform actions for the home team
-        System.out.println(homeTeam.getName() + " vs " + awayTeam.getName());
-        for (Player player : homeTeam.getDefenders()) {
-            player.performAction();
-        }
-        for (Player player : homeTeam.getMidfielders()) {
-            player.performAction();
-        }
-        for (Player player : homeTeam.getStrikers()) {
-            player.performAction();
-        }
 
-        // Perform actions for the away team
-        for (Player player : awayTeam.getDefenders()) {
-            player.performAction();
-        }
-        for (Player player : awayTeam.getMidfielders()) {
-            player.performAction();
-        }
-        for (Player player : awayTeam.getStrikers()) {
-            player.performAction();
+        // Randomly determine which team gets possession first
+        ArrayList<Player> teamWithPossession;
+        if (random.nextBoolean()) {
+            teamWithPossession = homeTeam;
+            System.out.println(homeTeam.get(0).getName() + " starts with possession!");
+        } else {
+            teamWithPossession = awayTeam;
+            System.out.println(awayTeam.get(0).getName() + " starts with possession!");
         }
 
-        System.out.println("Match ended!");
+        int count = 0;
+
+        referee.whistle();
+
+        // Play the match
+        while (true) {
+            count++;
+            Player playerWithPossession = teamWithPossession.get(random.nextInt(teamWithPossession.size()));
+            System.out.println(playerWithPossession.getName() + " has the ball.");
+            // Simulate player actions
+            playerWithPossession.performAction();
+            // Randomly determine if the opposing team takes possession next
+            if (random.nextBoolean()) {
+                if (teamWithPossession == homeTeam) {
+                    teamWithPossession = awayTeam;
+                } else {
+                    teamWithPossession = homeTeam;
+                }
+            }
+            // Check if the match is over
+            if (count == 20) {
+                System.out.println("The match is over!");
+                break;
+            }
+        }
+        // Report the final score
+        System.out.println("Boca Juniors " + score.getHomeScore() + " - " + score.getAwayScore() + " River Plate");
+    }
+
+    public static Score getScore() {
+        return score;
     }
 }

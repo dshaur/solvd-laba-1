@@ -13,6 +13,15 @@ class Coach extends Person {
         super(name, age);
     }
 
+    public void giveInstructions(String instructions) {
+        System.out.println(this.getName() + ": " + instructions);
+    }
+
+    public void motivatePlayer(Player player) {
+        // Default behavior - do nothing for now
+    }
+
+
     // motivateTeam() method
     public void motivateTeam() {
         System.out.println("Motivating the team...");
