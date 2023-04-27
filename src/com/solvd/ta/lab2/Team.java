@@ -2,7 +2,7 @@ package com.solvd.ta.lab2;
 
 import java.util.ArrayList;
 
-public class Team {
+public class Team implements Celebratable {
     private String name;
     private ArrayList<Player> players;
     private Coach coach;
@@ -37,7 +37,9 @@ public class Team {
         this.coach = coach;
     }
 
-    // Add methods for managing players and coach
+    @Override
+    public void celebrate() {
+        System.out.println(getName() + " players are celebrating!");
+    }
+
 }
-
-

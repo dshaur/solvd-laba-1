@@ -13,8 +13,6 @@ import java.util.Random;
 class Match {
 
     // Attributes and variables
-
-
     private final Team homeTeam;
     private final Team awayTeam;
     private final ArrayList<Player> homePlayers;
@@ -110,6 +108,16 @@ class Match {
         }
         // Report the final score
         System.out.println(homeTeam.getName() + " " + score.getHomeScore() + " - " + score.getAwayScore() + " " + awayTeam.getName());
+
+        // Make the winner celebrate, otherwise it is a draw
+        if (score.getHomeScore() > score.getAwayScore()) {
+            homeTeam.celebrate();
+        } else if (score.getHomeScore() < score.getAwayScore()) {
+            awayTeam.celebrate();
+        } else {
+            System.out.println("It's a draw!");
+        }
+
     }
 
     public static Score getScore() {

@@ -1,6 +1,6 @@
 package com.solvd.ta.lab2;
 
-public class Score {
+public final class Score {
 
     private int homeScore;
     private int awayScore;

@@ -7,7 +7,7 @@ package com.solvd.ta.lab2;
 
 import java.util.Random;
 
-class Defender extends Player {
+class Defender extends Player implements Runnable, Substituable {
     public Defender(String name, int age, int number, String team) {
         super(name, age, number, team);
     }
@@ -27,5 +27,17 @@ class Defender extends Player {
                 Match.getScore().homeScored(); // The home team scores if the defender belongs to the away team
             }
         }
+    }
+
+    // Run method
+    @Override
+    public void run() {
+        System.out.println(getName() + " is running.");
+    }
+
+    // Substitution method
+    @Override
+    public void substitute() {
+        System.out.println(getName() + " is going off the field and being replaced by a substitute.");
     }
 }

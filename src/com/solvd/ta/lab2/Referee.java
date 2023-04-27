@@ -5,7 +5,7 @@ package com.solvd.ta.lab2;
  * and age as parameters, and it has a method whistle() that prints a message.
  */
 
-class Referee extends Person {
+class Referee extends Person implements Runnable {
 
     // Constructor
     Referee(String name, int age) {
@@ -15,5 +15,11 @@ class Referee extends Person {
     // whistle() method
     public void whistle() {
         System.out.println("The referee " + this.getName() + " is whistling...");
+    }
+
+    //  run() method
+    @Override
+    public void run() {
+        System.out.println(getName() + " is running.");
     }
 }

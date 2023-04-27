@@ -6,7 +6,7 @@ package com.solvd.ta.lab2;
  * overridden in a derived class.
  */
 
-abstract class Player extends Person {
+abstract class Player extends Person implements Celebratable {
 
     // Attributes and variables
     private int number;
@@ -38,4 +38,11 @@ abstract class Player extends Person {
 
     // Abstract method to be overridden in subclass
     abstract void performAction();
+
+    @Override
+    public void celebrate() {
+        System.out.println(getName() + " is celebrating!");
+    }
+
+
 }
