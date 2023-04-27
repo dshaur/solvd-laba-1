@@ -8,11 +8,19 @@ package com.solvd.ta.lab2;
 import java.util.ArrayList;
 
 public class Main {
+
+    // Static block to display the initialization of the program
+    static {
+        // Code to be executed in the static block
+        System.out.println("Initializing the application...");
+        // Additional initialization code can be added here
+    }
+
     public static void main(String[] args) {
 
         // Create a stadium
         Stadium stadium = new Stadium("Santiago Bernabeu", 50000);
-        
+
         // Create a referee
         Referee referee = new Referee("John Smith", 45);
 

@@ -3,16 +3,20 @@ package com.solvd.ta.lab2;
 import java.util.ArrayList;
 
 public class Team implements Celebratable {
+
+    // Attributes and variables
     private String name;
     private ArrayList<Player> players;
     private Coach coach;
 
+    //Constructor
     public Team(String name, ArrayList<Player> players, Coach coach) {
         this.name = name;
         this.players = players;
         this.coach = coach;
     }
 
+    // Getters and Setters
     public String getName() {
         return name;
     }
@@ -37,6 +41,7 @@ public class Team implements Celebratable {
         this.coach = coach;
     }
 
+    // celebrate() method
     @Override
     public void celebrate() {
         System.out.println(getName() + " players are celebrating!");
