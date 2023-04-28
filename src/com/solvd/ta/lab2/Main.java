@@ -5,18 +5,26 @@ package com.solvd.ta.lab2;
  * It instantiates two teams, a referee, a stadium and a match, and then calls the start() method on the match.
  */
 
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 
 public class Main {
 
+    // Logger
+    private static final Logger logger = LogManager.getLogger(Main.class);
+
     // Static block to display the initialization of the program
     static {
         // Code to be executed in the static block
-        System.out.println("Initializing the application...");
+        logger.info("Initializing the application...");
         // Additional initialization code can be added here
     }
 
     public static void main(String[] args) {
+
 
         // Create a stadium
         Stadium stadium = new Stadium("Santiago Bernabeu", 50000);

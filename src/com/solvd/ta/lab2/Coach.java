@@ -6,7 +6,14 @@ package com.solvd.ta.lab2;
  * and a method called motivateTeam() which prints a motivational message.
  */
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 class Coach extends Person implements Coachable, Cheerable {
+
+    // Logger
+    private static final Logger logger = LogManager.getLogger(Coach.class);
 
     // Constructor
     Coach(String name, int age) {
@@ -15,11 +22,11 @@ class Coach extends Person implements Coachable, Cheerable {
 
     // motivateTeam() method
     public void instructTeam() {
-        System.out.println(this.getName() + " is instructing his team...");
+        logger.info(this.getName() + " is instructing his team...");
     }
 
     // cheer() method
     public void cheer() {
-        System.out.println(this.getName() + " is cheering up his team...");
+        logger.info(this.getName() + " is cheering up his team...");
     }
 }

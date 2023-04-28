@@ -5,9 +5,16 @@ package com.solvd.ta.lab2;
  * It has a constructor which takes in a name, age and number, and sets the team.
  */
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Random;
 
 class Defender extends Player implements Runnable, Substituable {
+
+    // Logger
+    private static final Logger logger = LogManager.getLogger(Defender.class);
+
     public Defender(String name, int age, int number, String team) {
         super(name, age, number, team);
     }
@@ -18,9 +25,9 @@ class Defender extends Player implements Runnable, Substituable {
 
         Random random = new Random();
         if (random.nextDouble() < 0.9) {
-            System.out.println(getName() + " prevented a goal from being scored!");
+            logger.info(getName() + " prevented a goal from being scored!");
         } else {
-            System.out.println(getName() + " gave the opposing team a penalty. They scored a goal!");
+            logger.info(getName() + " gave the opposing team a penalty. They scored a goal!");
             if (this.getTeam().equals("Home Team")) { // Check if the defender belongs to the home team
                 Match.getScore().awayScored(); // The away team scores if the defender belongs to the home team
             } else {
@@ -32,12 +39,12 @@ class Defender extends Player implements Runnable, Substituable {
     // Run method
     @Override
     public void run() {
-        System.out.println(getName() + " is running.");
+        logger.info(getName() + " is running.");
     }
 
     // Substitution method
     @Override
     public void substitute() {
-        System.out.println(getName() + " is going off the field and being replaced by a substitute.");
+        logger.info(getName() + " is going off the field and being replaced by a substitute.");
     }
 }

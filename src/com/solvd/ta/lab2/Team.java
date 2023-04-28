@@ -1,8 +1,14 @@
 package com.solvd.ta.lab2;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 
 public class Team implements Celebratable {
+
+    // Logger
+    private static final Logger logger = LogManager.getLogger(Team.class);
 
     // Attributes and variables
     private String name;
@@ -44,7 +50,7 @@ public class Team implements Celebratable {
     // celebrate() method
     @Override
     public void celebrate() {
-        System.out.println(getName() + " players are celebrating!");
+        logger.info(getName() + " players are celebrating!");
     }
 
 }

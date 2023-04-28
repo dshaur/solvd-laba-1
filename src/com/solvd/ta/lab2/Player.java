@@ -6,7 +6,13 @@ package com.solvd.ta.lab2;
  * overridden in a derived class.
  */
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 abstract class Player extends Person implements Celebratable {
+
+    // Logger
+    private static final Logger logger = LogManager.getLogger(Player.class);
 
     // Attributes and variables
     private int number;
@@ -41,7 +47,7 @@ abstract class Player extends Person implements Celebratable {
 
     @Override
     public void celebrate() {
-        System.out.println(getName() + " is celebrating!");
+        logger.info(getName() + " is celebrating!");
     }
 
 

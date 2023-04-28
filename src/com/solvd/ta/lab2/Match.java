@@ -7,11 +7,16 @@ package com.solvd.ta.lab2;
  * letting both homePlayers and awayPlayers play against each other.
  */
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
 class Match {
+
+    private static final Logger logger = LogManager.getLogger(Match.class);
 
     // Attributes and variables
     private final Team homeTeam;
@@ -65,7 +70,7 @@ class Match {
             } catch (StadiumCapacityException e) {
 
                 // Handle the exception: display an error message or take appropriate actions
-                System.err.println(e.getMessage());
+                logger.error(e.getMessage());
                 System.exit(1);
             }
         }
@@ -76,12 +81,12 @@ class Match {
                 throw new TeamNotFoundException("Home team or away team not found.");
             } catch (TeamNotFoundException e) {
                 // Handle the exception: display an error message or take appropriate actions
-                System.err.println(e.getMessage());
+                logger.error(e.getMessage());
                 System.exit(1);
             }
         }
 
-        System.out.println("The match between " + homeTeam.getName() + " and " + awayTeam.getName() + " starts now at the " + stadium.getName() + " stadium!");
+        logger.info("The match between " + homeTeam.getName() + " and " + awayTeam.getName() + " starts now at the " + stadium.getName() + " stadium!");
 
 
         // Check if the home Coach or away Coach is empty
@@ -90,7 +95,7 @@ class Match {
                 throw new TeamNotFoundException("Home coach or away coach name not found.");
             } catch (TeamNotFoundException e) {
                 // Handle the exception: display an error message or take appropriate actions
-                System.err.println(e.getMessage());
+                logger.error(e.getMessage());
                 System.exit(1);
             }
         }
@@ -105,7 +110,7 @@ class Match {
                 throw new RefereeNotFoundException("Referee name not found.");
             } catch (RefereeNotFoundException e) {
                 // Handle the exception: display an error message or take appropriate actions
-                System.err.println(e.getMessage());
+                logger.error(e.getMessage());
                 System.exit(1);
             }
         }
@@ -124,14 +129,14 @@ class Match {
                 } catch (PlayerNotFoundException e) {
 
                     // Handle the exception: display an error message or take appropriate actions
-                    System.err.println(e.getMessage());
+                    logger.error(e.getMessage());
                     System.exit(1);
                 }
             }
 
             teamWithPossession = homePlayers;
 
-            System.out.println(homePlayers.get(0).getName() + " starts with possession!");
+            logger.info(homePlayers.get(0).getName() + " starts with possession!");
 
         } else {
 
@@ -142,14 +147,14 @@ class Match {
                 } catch (PlayerNotFoundException e) {
 
                     // Handle the exception: display an error message or take appropriate actions
-                    System.err.println(e.getMessage());
+                    logger.error(e.getMessage());
                     System.exit(1);
                 }
             }
 
             teamWithPossession = awayPlayers;
 
-            System.out.println(awayPlayers.get(0).getName() + " starts with possession!");
+            logger.info(awayPlayers.get(0).getName() + " starts with possession!");
         }
 
         // Counter of actions performed to finalize the match
@@ -159,7 +164,7 @@ class Match {
         while (true) {
             count++;
             Player playerWithPossession = teamWithPossession.get(random.nextInt(teamWithPossession.size()));
-            System.out.println(playerWithPossession.getName() + " has the ball.");
+            logger.info(playerWithPossession.getName() + " has the ball.");
             // Simulate player actions
             playerWithPossession.performAction();
             // Randomly determine if the opposing team takes possession next
@@ -175,7 +180,7 @@ class Match {
 
                 // The referee ends the match
                 referee.whistle();
-                System.out.println("The match is over!");
+                logger.info("The match is over!");
 
                 // Once the match ends, coaches cheer up their teams
                 homeTeam.getCoach().cheer();
@@ -185,7 +190,7 @@ class Match {
         }
 
         // Report the final score
-        System.out.println(homeTeam.getName() + " " + score.getHomeScore() + " - " + score.getAwayScore() + " " + awayTeam.getName());
+        logger.info(homeTeam.getName() + " " + score.getHomeScore() + " - " + score.getAwayScore() + " " + awayTeam.getName());
 
         // Make the winner celebrate, otherwise it is a draw
         if (score.getHomeScore() > score.getAwayScore()) {
@@ -193,7 +198,7 @@ class Match {
         } else if (score.getHomeScore() < score.getAwayScore()) {
             awayTeam.celebrate();
         } else {
-            System.out.println("It's a draw!");
+            logger.info("It's a draw!");
         }
 
     }

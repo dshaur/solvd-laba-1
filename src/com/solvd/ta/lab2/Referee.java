@@ -5,7 +5,13 @@ package com.solvd.ta.lab2;
  * and age as parameters, and it has a method whistle() that prints a message.
  */
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 class Referee extends Person implements Runnable {
+
+    // Logger
+    private static final Logger logger = LogManager.getLogger(Referee.class);
 
     // Constructor
     Referee(String name, int age) {
@@ -14,12 +20,12 @@ class Referee extends Person implements Runnable {
 
     // whistle() method
     public void whistle() {
-        System.out.println("The referee " + this.getName() + " is whistling...");
+        logger.info("The referee " + this.getName() + " is whistling...");
     }
 
     //  run() method
     @Override
     public void run() {
-        System.out.println(getName() + " is running.");
+        logger.info(getName() + " is running.");
     }
 }

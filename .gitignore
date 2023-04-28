@@ -29,5 +29,9 @@ bin/
 
 SolvdLabaProjects.iml
 
+src/resources
+
+application.log
+
 ### Mac OS ###
 .DS_Store
