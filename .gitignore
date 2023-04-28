@@ -33,5 +33,7 @@ src/resources
 
 application.log
 
+pom.xml
+
 ### Mac OS ###
 .DS_Store
