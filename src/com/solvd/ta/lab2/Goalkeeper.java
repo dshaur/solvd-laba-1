@@ -1,5 +1,7 @@
 package com.solvd.ta.lab2;
 
+import com.solvd.ta.lab2.interfaces.Runnable;
+import com.solvd.ta.lab2.interfaces.Substituable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

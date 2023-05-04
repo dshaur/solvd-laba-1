@@ -1,9 +1,12 @@
 package com.solvd.ta.lab2;
 
+import com.solvd.ta.lab2.exceptions.TeamNotFoundException;
+import com.solvd.ta.lab2.interfaces.Celebratable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Team implements Celebratable {
 
@@ -16,10 +19,17 @@ public class Team implements Celebratable {
     private Coach coach;
 
     //Constructor
-    public Team(String name, ArrayList<Player> players, Coach coach) {
+    public Team(String name, ArrayList<Player> players, Coach coach) throws TeamNotFoundException {
         this.name = name;
         this.players = players;
         this.coach = coach;
+
+        // Check if the home team or away team is empty
+        if (Objects.equals(this.getName(), "")) {
+
+            throw new TeamNotFoundException("Home team or away team not found.");
+
+        }
     }
 
     // Getters and Setters

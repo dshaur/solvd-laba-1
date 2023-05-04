@@ -7,11 +7,11 @@ package com.solvd.ta.lab2;
  * letting both homePlayers and awayPlayers play against each other.
  */
 
+import com.solvd.ta.lab2.exceptions.MissingParameterException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Random;
 
 class Match {
@@ -38,6 +38,12 @@ class Match {
         this.awayPlayers = awayPlayers;
         this.stadium = stadium;
         this.referee = referee;
+
+        if (homeTeam == null || awayTeam == null || homePlayers == null || awayPlayers == null ||
+                stadium == null || referee == null) {
+            throw new MissingParameterException("One or more required parameters are missing.");
+        }
+
     }
 
     // Setters and Getters from hw2 practice
@@ -63,57 +69,14 @@ class Match {
      */
     public void playMatch() {
 
-        // Check if the stadium capacity is sufficient
-        if (stadium.getCapacity() < 0 || stadium.getCapacity() > 50000) {
-            try {
-                throw new StadiumCapacityException("Stadium capacity is invalid or exceeded for the match.");
-            } catch (StadiumCapacityException e) {
-
-                // Handle the exception: display an error message or take appropriate actions
-                logger.error(e.getMessage());
-                System.exit(1);
-            }
-        }
-
-        // Check if the home team or away team is empty
-        if (Objects.equals(homeTeam.getName(), "") || Objects.equals(awayTeam.getName(), "")) {
-            try {
-                throw new TeamNotFoundException("Home team or away team not found.");
-            } catch (TeamNotFoundException e) {
-                // Handle the exception: display an error message or take appropriate actions
-                logger.error(e.getMessage());
-                System.exit(1);
-            }
-        }
 
         logger.info("The match between " + homeTeam.getName() + " and " + awayTeam.getName() + " starts now at the " + stadium.getName() + " stadium!");
 
-
-        // Check if the home Coach or away Coach is empty
-        if (Objects.equals(homeTeam.getCoach().getName(), "") || Objects.equals(awayTeam.getCoach().getName(), "")) {
-            try {
-                throw new TeamNotFoundException("Home coach or away coach name not found.");
-            } catch (TeamNotFoundException e) {
-                // Handle the exception: display an error message or take appropriate actions
-                logger.error(e.getMessage());
-                System.exit(1);
-            }
-        }
 
         // Coaches instruct their teams
         homeTeam.getCoach().instructTeam();
         awayTeam.getCoach().instructTeam();
 
-        // Check if the referee is null
-        if (Objects.equals(referee.getName(), "")) {
-            try {
-                throw new RefereeNotFoundException("Referee name not found.");
-            } catch (RefereeNotFoundException e) {
-                // Handle the exception: display an error message or take appropriate actions
-                logger.error(e.getMessage());
-                System.exit(1);
-            }
-        }
 
         // Referee starts the game
         referee.whistle();
@@ -122,35 +85,11 @@ class Match {
         ArrayList<Player> teamWithPossession;
         if (random.nextBoolean()) {
 
-            // Check if the player with possession is empty
-            if (Objects.equals(homePlayers.get(0).getName(), "")) {
-                try {
-                    throw new PlayerNotFoundException("Player's name with possession not found.");
-                } catch (PlayerNotFoundException e) {
-
-                    // Handle the exception: display an error message or take appropriate actions
-                    logger.error(e.getMessage());
-                    System.exit(1);
-                }
-            }
-
             teamWithPossession = homePlayers;
 
             logger.info(homePlayers.get(0).getName() + " starts with possession!");
 
         } else {
-
-            // Check if the player with possession is empty
-            if (Objects.equals(awayPlayers.get(0).getName(), "")) {
-                try {
-                    throw new PlayerNotFoundException("Player's name with possession not found.");
-                } catch (PlayerNotFoundException e) {
-
-                    // Handle the exception: display an error message or take appropriate actions
-                    logger.error(e.getMessage());
-                    System.exit(1);
-                }
-            }
 
             teamWithPossession = awayPlayers;
 

@@ -6,8 +6,14 @@ package com.solvd.ta.lab2;
  * and a method called motivateTeam() which prints a motivational message.
  */
 
+
+import com.solvd.ta.lab2.exceptions.CoachNotFoundException;
+import com.solvd.ta.lab2.interfaces.Cheerable;
+import com.solvd.ta.lab2.interfaces.Coachable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Objects;
 
 
 class Coach extends Person implements Coachable, Cheerable {
@@ -16,8 +22,16 @@ class Coach extends Person implements Coachable, Cheerable {
     private static final Logger logger = LogManager.getLogger(Coach.class);
 
     // Constructor
-    Coach(String name, int age) {
+    Coach(String name, int age) throws CoachNotFoundException {
+
         super(name, age);
+
+        // Check if the home Coach or away Coach is empty
+        if (Objects.equals(this.getName(), "")) {
+
+            throw new CoachNotFoundException("Home coach or away coach name not found.");
+
+        }
     }
 
     // motivateTeam() method

@@ -5,6 +5,8 @@ package com.solvd.ta.lab2;
  *  with the type set to "Midfielder". It also overrides the performAction method to print out "Making a pass...".
  */
 
+import com.solvd.ta.lab2.interfaces.Runnable;
+import com.solvd.ta.lab2.interfaces.Substituable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -6,6 +6,7 @@ package com.solvd.ta.lab2;
  * overridden in a derived class.
  */
 
+import com.solvd.ta.lab2.interfaces.Celebratable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,6 +24,7 @@ abstract class Player extends Person implements Celebratable {
         super(name, age);
         this.number = number;
         this.team = team;
+
     }
 
     // Getters and Setters

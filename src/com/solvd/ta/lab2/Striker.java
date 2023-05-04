@@ -6,6 +6,8 @@ package com.solvd.ta.lab2;
  * The performAction method is overridden to print "Scoring a goal..." when called.
  */
 
+import com.solvd.ta.lab2.interfaces.Runnable;
+import com.solvd.ta.lab2.interfaces.Substituable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,15 +18,18 @@ class Striker extends Player implements Runnable, Substituable {
     // Logger
     private static final Logger logger = LogManager.getLogger(Striker.class);
 
+    private static final double strikerAbility = 0.4;
+
     public Striker(String name, int age, int number, String team) {
         super(name, age, number, team);
     }
+
 
     @Override
     public void performAction() {
         // Simulate the striker's goal-scoring ability
         Random random = new Random();
-        if (random.nextDouble() < 0.4) {
+        if (random.nextDouble() < strikerAbility) {
             logger.info(getName() + " scored a goal!");
             celebrate();
             if (this.getTeam().equals("Home Team")) { // Check if the striker belongs to the home team

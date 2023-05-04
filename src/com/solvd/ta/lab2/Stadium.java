@@ -5,6 +5,8 @@ package com.solvd.ta.lab2;
  * setters for each field. It also has proper implementation of the toString(), equals(), and hashCode() methods.
  */
 
+import com.solvd.ta.lab2.exceptions.StadiumCapacityException;
+
 import java.util.Objects;
 
 class Stadium {
@@ -14,9 +16,14 @@ class Stadium {
     private int capacity;
 
     // Constructor
-    Stadium(String name, int capacity) {
+    Stadium(String name, int capacity) throws StadiumCapacityException {
         this.name = name;
         this.capacity = capacity;
+
+        if (this.getCapacity() < 0 || this.getCapacity() > 50000) {
+            throw new StadiumCapacityException("Stadium capacity is invalid or exceeded for the match.");
+        }
+
     }
 
     // Getters and Setters

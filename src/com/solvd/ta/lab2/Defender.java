@@ -5,6 +5,8 @@ package com.solvd.ta.lab2;
  * It has a constructor which takes in a name, age and number, and sets the team.
  */
 
+import com.solvd.ta.lab2.interfaces.Runnable;
+import com.solvd.ta.lab2.interfaces.Substituable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,6 +17,8 @@ class Defender extends Player implements Runnable, Substituable {
     // Logger
     private static final Logger logger = LogManager.getLogger(Defender.class);
 
+    private static final double defenderAbility = 0.9;
+
     public Defender(String name, int age, int number, String team) {
         super(name, age, number, team);
     }
@@ -24,7 +28,7 @@ class Defender extends Player implements Runnable, Substituable {
         // Simulate the defender's ability to stop a goal
 
         Random random = new Random();
-        if (random.nextDouble() < 0.9) {
+        if (random.nextDouble() < defenderAbility) {
             logger.info(getName() + " prevented a goal from being scored!");
         } else {
             logger.info(getName() + " gave the opposing team a penalty. They scored a goal!");
