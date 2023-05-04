@@ -6,6 +6,7 @@ package com.solvd.ta.lab2;
  */
 
 
+import com.solvd.ta.lab2.collections.LinkedList;
 import com.solvd.ta.lab2.exceptions.CoachNotFoundException;
 import com.solvd.ta.lab2.exceptions.RefereeNotFoundException;
 import com.solvd.ta.lab2.exceptions.StadiumCapacityException;
@@ -35,7 +36,9 @@ public class Main {
             // Create a referee
             Referee referee = new Referee("John Smith", 45);
 
-            // Create players for home team
+            /* ******************************* ArrayLists operations for players ******************************** */
+
+            // Create players for home team ArrayList
             ArrayList<Player> homePlayers = new ArrayList<>();
             homePlayers.add(new Striker("Benedetto", 25, 9, "Home Team"));
             homePlayers.add(new Striker("Villa", 28, 10, "Home Team"));
@@ -49,7 +52,7 @@ public class Main {
             homePlayers.add(new Defender("Chelo", 24, 2, "Home Team"));
             homePlayers.add(new Goalkeeper("Romero", 33, 1, "Home Team"));
 
-            // Create players for away team
+            // Create players for away team ArrayList
             ArrayList<Player> awayPlayers = new ArrayList<>();
             awayPlayers.add(new Striker("Tom", 23, 9, "Away Team"));
             awayPlayers.add(new Striker("Richard", 27, 10, "Away Team"));
@@ -62,6 +65,39 @@ public class Main {
             awayPlayers.add(new Defender("Tim", 26, 3, "Away Team"));
             awayPlayers.add(new Defender("Casco", 31, 2, "Away Team"));
             awayPlayers.add(new Goalkeeper("Kevin", 32, 1, "Away Team"));
+
+
+            /* ****************** Optional: Custom generic LinkedLists operations for players ******************** */
+
+            // Create players for home team LinkedList
+            LinkedList<Player> homePlayersLinkedList = new LinkedList<>();
+            homePlayersLinkedList.add(new Striker("Benedetto", 25, 9, "Home Team"));
+            homePlayersLinkedList.add(new Striker("Villa", 28, 10, "Home Team"));
+            homePlayersLinkedList.add(new Midfielder("Pol", 30, 8, "Home Team"));
+            homePlayersLinkedList.add(new Midfielder("Medina", 27, 6, "Home Team"));
+            homePlayersLinkedList.add(new Midfielder("Varela", 26, 12, "Home Team"));
+            homePlayersLinkedList.add(new Midfielder("Ramirez", 22, 11, "Home Team"));
+            homePlayersLinkedList.add(new Defender("Barco", 29, 5, "Home Team"));
+            homePlayersLinkedList.add(new Defender("Figal", 32, 4, "Home Team"));
+            homePlayersLinkedList.add(new Defender("Valentini", 24, 3, "Home Team"));
+            homePlayersLinkedList.add(new Defender("Chelo", 24, 2, "Home Team"));
+            homePlayersLinkedList.add(new Goalkeeper("Romero", 33, 1, "Home Team"));
+
+
+            // Create players for away team LinkedList
+            LinkedList<Player> awayPlayersLinkedList = new LinkedList<>();
+            awayPlayersLinkedList.add(new Striker("Tom", 23, 9, "Away Team"));
+            awayPlayersLinkedList.add(new Striker("Richard", 27, 10, "Away Team"));
+            awayPlayersLinkedList.add(new Midfielder("Harry", 29, 8, "Away Team"));
+            awayPlayersLinkedList.add(new Midfielder("Max", 25, 6, "Away Team"));
+            awayPlayersLinkedList.add(new Midfielder("Sam", 24, 12, "Away Team"));
+            awayPlayersLinkedList.add(new Midfielder("Fer", 19, 7, "Away Team"));
+            awayPlayersLinkedList.add(new Defender("Will", 30, 5, "Away Team"));
+            awayPlayersLinkedList.add(new Defender("Doug", 28, 4, "Away Team"));
+            awayPlayersLinkedList.add(new Defender("Tim", 26, 3, "Away Team"));
+            awayPlayersLinkedList.add(new Defender("Casco", 31, 2, "Away Team"));
+            awayPlayersLinkedList.add(new Goalkeeper("Kevin", 32, 1, "Away Team"));
+
 
             // Create coaches
             Coach homeCoach = new Coach("Peter", 56);
