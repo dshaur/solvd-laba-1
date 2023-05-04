@@ -2,6 +2,14 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+.idea
+SolvdLabaProjects.iml
+
+### Custom ##
+logs
+debug
+target
+
 
 ### Eclipse ###
 .apt_generated
@@ -24,27 +32,6 @@ bin/
 
 ### VS Code ###
 .vscode/
-
-.idea
-
-SolvdLabaProjects.iml
-
-application.log
-
-target/
-
-logs
-
-
-release.properties
-
-dependency-reduced-pom.xml
-
-buildNumber.properties
-
-.mvn/timing.properties
-
-.mvn/wrapper/maven-wrapper.jar
 
 ### Mac OS ###
 .DS_Store
