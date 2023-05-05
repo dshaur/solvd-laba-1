@@ -15,9 +15,9 @@ import java.util.Random;
 class Defender extends Player implements Runnable, Substituable {
 
     // Logger
-    private static final Logger logger = LogManager.getLogger(Defender.class);
+    private static final Logger LOGGER = LogManager.getLogger(Defender.class);
 
-    private static final double defenderAbility = 0.9;
+    private static final double DEFENDER_ABILITY = 0.9;
 
     public Defender(String name, int age, int number, String team) {
         super(name, age, number, team);
@@ -28,10 +28,10 @@ class Defender extends Player implements Runnable, Substituable {
         // Simulate the defender's ability to stop a goal
 
         Random random = new Random();
-        if (random.nextDouble() < defenderAbility) {
-            logger.info(getName() + " prevented a goal from being scored!");
+        if (random.nextDouble() < DEFENDER_ABILITY) {
+            LOGGER.info(getName() + " prevented a goal from being scored!");
         } else {
-            logger.info(getName() + " gave the opposing team a penalty. They scored a goal!");
+            LOGGER.info(getName() + " gave the opposing team a penalty. They scored a goal!");
             if (this.getTeam().equals("Home Team")) { // Check if the defender belongs to the home team
                 Match.getScore().awayScored(); // The away team scores if the defender belongs to the home team
             } else {
@@ -43,12 +43,12 @@ class Defender extends Player implements Runnable, Substituable {
     // Run method
     @Override
     public void run() {
-        logger.info(getName() + " is running.");
+        LOGGER.info(getName() + " is running.");
     }
 
     // Substitution method
     @Override
     public void substitute() {
-        logger.info(getName() + " is going off the field and being replaced by a substitute.");
+        LOGGER.info(getName() + " is going off the field and being replaced by a substitute.");
     }
 }

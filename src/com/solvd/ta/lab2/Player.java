@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 abstract class Player extends Person implements Celebratable {
 
     // Logger
-    private static final Logger logger = LogManager.getLogger(Player.class);
+    private static final Logger LOGGER = LogManager.getLogger(Player.class);
 
     // Attributes and variables
     private int number;
@@ -49,7 +49,7 @@ abstract class Player extends Person implements Celebratable {
 
     @Override
     public void celebrate() {
-        logger.info(getName() + " is celebrating!");
+        LOGGER.info(getName() + " is celebrating!");
     }
 
 

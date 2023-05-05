@@ -19,7 +19,7 @@ import java.util.Objects;
 class Coach extends Person implements Coachable, Cheerable {
 
     // Logger
-    private static final Logger logger = LogManager.getLogger(Coach.class);
+    private static final Logger LOGGER = LogManager.getLogger(Coach.class);
 
     // Constructor
     Coach(String name, int age) throws CoachNotFoundException {
@@ -36,11 +36,11 @@ class Coach extends Person implements Coachable, Cheerable {
 
     // motivateTeam() method
     public void instructTeam() {
-        logger.info(this.getName() + " is instructing his team...");
+        LOGGER.info(this.getName() + " is instructing his team...");
     }
 
     // cheer() method
     public void cheer() {
-        logger.info(this.getName() + " is cheering up his team...");
+        LOGGER.info(this.getName() + " is cheering up his team...");
     }
 }

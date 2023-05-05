@@ -15,7 +15,7 @@ class Goalkeeper extends Player implements Runnable, Substituable {
 
 
     // Logger
-    private static final Logger logger = LogManager.getLogger(Goalkeeper.class);
+    private static final Logger LOGGER = LogManager.getLogger(Goalkeeper.class);
 
     // Constructor
     public Goalkeeper(String name, int age, int number, String teamName) {
@@ -27,21 +27,21 @@ class Goalkeeper extends Player implements Runnable, Substituable {
         // Simulate the goalkeeper's ability to save a goal
         Random random = new Random();
         if (random.nextDouble() < 0.3) {
-            logger.info(getName() + " made a great save!");
+            LOGGER.info(getName() + " made a great save!");
         } else {
-            logger.info(getName() + " performed a goal kick.");
+            LOGGER.info(getName() + " performed a goal kick.");
         }
     }
 
     @Override
     public void run() {
-        logger.info(getName() + " is running.");
+        LOGGER.info(getName() + " is running.");
     }
 
     // Substitution method
     @Override
     public void substitute() {
-        logger.info(getName() + " is going off the field and being replaced by a substitute.");
+        LOGGER.info(getName() + " is going off the field and being replaced by a substitute.");
     }
 
 }

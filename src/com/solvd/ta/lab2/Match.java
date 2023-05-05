@@ -16,30 +16,27 @@ import java.util.Random;
 
 class Match {
 
-    private static final Logger logger = LogManager.getLogger(Match.class);
+    private static final Logger LOGGER = LogManager.getLogger(Match.class);
 
     // Attributes and variables
-    private final Team homeTeam;
-    private final Team awayTeam;
-    private final ArrayList<Player> homePlayers;
-    private final ArrayList<Player> awayPlayers;
+    private final Team HOME_TEAM;
+    private final Team AWAY_TEAM;
+
     private Referee referee;
     private Stadium stadium;
 
-    private static final Score score = new Score();
-    private static final Random random = new Random();
+    private static final Score SCORE = new Score();
+    private static final Random RANDOM = new Random();
 
     /* This is the constructor of the Match class which is used to initialize the fields homePlayers, awayPlayers, referee
     and stadium with the values specified in the parameters. */
-    public Match(Team homeTeam, Team awayTeam, ArrayList<Player> homePlayers, ArrayList<Player> awayPlayers, Stadium stadium, Referee referee) {
-        this.homeTeam = homeTeam;
-        this.awayTeam = awayTeam;
-        this.homePlayers = homePlayers;
-        this.awayPlayers = awayPlayers;
+    public Match(Team HOME_TEAM, Team AWAY_TEAM, Stadium stadium, Referee referee) {
+        this.HOME_TEAM = HOME_TEAM;
+        this.AWAY_TEAM = AWAY_TEAM;
         this.stadium = stadium;
         this.referee = referee;
 
-        if (homeTeam == null || awayTeam == null || homePlayers == null || awayPlayers == null ||
+        if (HOME_TEAM == null || AWAY_TEAM == null ||
                 stadium == null || referee == null) {
             throw new MissingParameterException("One or more required parameters are missing.");
         }
@@ -70,12 +67,12 @@ class Match {
     public void playMatch() {
 
 
-        logger.info("The match between " + homeTeam.getName() + " and " + awayTeam.getName() + " starts now at the " + stadium.getName() + " stadium!");
+        LOGGER.info("The match between " + HOME_TEAM.getName() + " and " + AWAY_TEAM.getName() + " starts now at the " + stadium.getName() + " stadium!");
 
 
         // Coaches instruct their teams
-        homeTeam.getCoach().instructTeam();
-        awayTeam.getCoach().instructTeam();
+        HOME_TEAM.getCoach().instructTeam();
+        AWAY_TEAM.getCoach().instructTeam();
 
 
         // Referee starts the game
@@ -83,17 +80,17 @@ class Match {
 
         // Randomly determine which team gets possession first
         ArrayList<Player> teamWithPossession;
-        if (random.nextBoolean()) {
+        if (RANDOM.nextBoolean()) {
 
-            teamWithPossession = homePlayers;
+            teamWithPossession = HOME_TEAM.getPlayers();
 
-            logger.info(homePlayers.get(0).getName() + " starts with possession!");
+            LOGGER.info(HOME_TEAM.getPlayers().get(10).getName() + " starts with possession!");
 
         } else {
 
-            teamWithPossession = awayPlayers;
+            teamWithPossession = AWAY_TEAM.getPlayers();
 
-            logger.info(awayPlayers.get(0).getName() + " starts with possession!");
+            LOGGER.info(AWAY_TEAM.getPlayers().get(10).getName() + " starts with possession!");
         }
 
         // Counter of actions performed to finalize the match
@@ -102,16 +99,16 @@ class Match {
         // Play the match
         while (true) {
             count++;
-            Player playerWithPossession = teamWithPossession.get(random.nextInt(teamWithPossession.size()));
-            logger.info(playerWithPossession.getName() + " has the ball.");
+            Player playerWithPossession = teamWithPossession.get(RANDOM.nextInt(teamWithPossession.size()));
+            LOGGER.info(playerWithPossession.getName() + " has the ball.");
             // Simulate player actions
             playerWithPossession.performAction();
             // Randomly determine if the opposing team takes possession next
-            if (random.nextBoolean()) {
-                if (teamWithPossession == homePlayers) {
-                    teamWithPossession = awayPlayers;
+            if (RANDOM.nextBoolean()) {
+                if (teamWithPossession == HOME_TEAM.getPlayers()) {
+                    teamWithPossession = AWAY_TEAM.getPlayers();
                 } else {
-                    teamWithPossession = homePlayers;
+                    teamWithPossession = HOME_TEAM.getPlayers();
                 }
             }
             // Check if the match is over according to the counter
@@ -119,30 +116,30 @@ class Match {
 
                 // The referee ends the match
                 referee.whistle();
-                logger.info("The match is over!");
+                LOGGER.info("The match is over!");
 
                 // Once the match ends, coaches cheer up their teams
-                homeTeam.getCoach().cheer();
-                awayTeam.getCoach().cheer();
+                HOME_TEAM.getCoach().cheer();
+                AWAY_TEAM.getCoach().cheer();
                 break;
             }
         }
 
         // Report the final score
-        logger.info(homeTeam.getName() + " " + score.getHomeScore() + " - " + score.getAwayScore() + " " + awayTeam.getName());
+        LOGGER.info(HOME_TEAM.getName() + " " + SCORE.getHomeScore() + " - " + SCORE.getAwayScore() + " " + AWAY_TEAM.getName());
 
         // Make the winner celebrate, otherwise it is a draw
-        if (score.getHomeScore() > score.getAwayScore()) {
-            homeTeam.celebrate();
-        } else if (score.getHomeScore() < score.getAwayScore()) {
-            awayTeam.celebrate();
+        if (SCORE.getHomeScore() > SCORE.getAwayScore()) {
+            HOME_TEAM.celebrate();
+        } else if (SCORE.getHomeScore() < SCORE.getAwayScore()) {
+            AWAY_TEAM.celebrate();
         } else {
-            logger.info("It's a draw!");
+            LOGGER.info("It's a draw!");
         }
 
     }
 
     public static Score getScore() {
-        return score;
+        return SCORE;
     }
 }

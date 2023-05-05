@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Team implements Celebratable {
 
     // Logger
-    private static final Logger logger = LogManager.getLogger(Team.class);
+    private static final Logger LOGGER = LogManager.getLogger(Team.class);
 
     // Attributes and variables
     private String name;
@@ -60,7 +60,7 @@ public class Team implements Celebratable {
     // celebrate() method
     @Override
     public void celebrate() {
-        logger.info(getName() + " players are celebrating!");
+        LOGGER.info(getName() + " players are celebrating!");
     }
 
 }

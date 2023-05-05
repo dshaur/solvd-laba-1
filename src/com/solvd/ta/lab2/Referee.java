@@ -15,7 +15,7 @@ import java.util.Objects;
 class Referee extends Person implements Runnable {
 
     // Logger
-    private static final Logger logger = LogManager.getLogger(Referee.class);
+    private static final Logger LOGGER = LogManager.getLogger(Referee.class);
 
     // Constructor
     Referee(String name, int age) throws RefereeNotFoundException {
@@ -33,12 +33,12 @@ class Referee extends Person implements Runnable {
 
     // whistle() method
     public void whistle() {
-        logger.info("The referee " + this.getName() + " is whistling...");
+        LOGGER.info("The referee " + this.getName() + " is whistling...");
     }
 
     //  run() method
     @Override
     public void run() {
-        logger.info(getName() + " is running.");
+        LOGGER.info(getName() + " is running.");
     }
 }
