@@ -12,7 +12,7 @@ import java.util.Set;
 public class UniqueWordsCounter {
     public static void main(String[] args) throws Exception {
         String inputFilePath = "logs/application.log";
-        String outputFilePath = "uniqueWords.txt";
+        String outputFilePath = "src/resources/uniqueWords.txt";
 
         String inputText = FileUtils.readFileToString(new File(inputFilePath), "UTF-8");
         List<String> words = Arrays.asList(StringUtils.split(inputText));
