@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 public class Team implements Celebratable {
 
@@ -63,4 +64,27 @@ public class Team implements Celebratable {
         LOGGER.info(getName() + " players are celebrating!");
     }
 
+    // Method that prints each team's lineup using Consumer
+    public void printTeamLineup() {
+        players.forEach(player -> LOGGER.info((player.getName())));
+    }
+
+    // Method that filters players using Predicate
+    public ArrayList<Player> filterPlayers(Predicate<Player> predicate) {
+        ArrayList<Player> filteredPlayers = new ArrayList<>();
+        for (Player player : players) {
+            if (predicate.test(player)) {
+                filteredPlayers.add(player);
+            }
+        }
+        return filteredPlayers;
+    }
+
+    // Method to display filtered players
+    public void displayFilteredPlayers(ArrayList<Player> filteredPlayers) {
+        LOGGER.info("Players over 30 in " + this.getName() + ":");
+        for (Player player : filteredPlayers) {
+            LOGGER.info(player.getName());
+        }
+    }
 }

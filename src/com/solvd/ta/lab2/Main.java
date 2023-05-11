@@ -84,7 +84,6 @@ public class Main {
         awayPlayers.add(new Defender("Casco", 31, 2, "Away Team"));
         awayPlayers.add(new Goalkeeper("Kevin", 32, 1, "Away Team"));
 
-
         // Create coaches
         try {
             homeCoach = new Coach("Peter", 56);
@@ -93,7 +92,6 @@ public class Main {
             LOGGER.error(e.getMessage());
             System.exit(1);
         }
-
 
         // Create the teams
         try {
@@ -106,6 +104,26 @@ public class Main {
 
         // Create a match
         Match match = new Match(homeTeam, awayTeam, stadium, referee);
+
+        // ************** Display Lineups ****************** //
+        // Home Lineup
+        LOGGER.info(homeTeam.getName() + " lineup:");
+        homeTeam.printTeamLineup();
+
+        // Away Lineup
+        LOGGER.info(awayTeam.getName() + " lineup:");
+        awayTeam.printTeamLineup();
+
+        // ************** Display team stats ************** //
+        // Home Team Stats
+        LOGGER.info(homeTeam.getName() + " stats");
+        ArrayList<Player> homeFilteredPlayers = homeTeam.filterPlayers(player -> player.getAge() > 30);
+        homeTeam.displayFilteredPlayers(homeFilteredPlayers);
+
+        // Away Team Stats
+        LOGGER.info(awayTeam.getName() + " stats");
+        ArrayList<Player> awayFilteredPlayers = awayTeam.filterPlayers(player -> player.getAge() > 30);
+        awayTeam.displayFilteredPlayers(awayFilteredPlayers);
 
         // Play the match
         match.playMatch();
