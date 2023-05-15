@@ -14,14 +14,22 @@ import java.util.Objects;
 
 class Referee extends Person implements Runnable {
 
+    public enum RefereeRole {
+        MAIN, ASSISTANT, LINE
+    }
+
+    // Attributes and Variables
+    private final RefereeRole role;
+    private Referee nextReferee;
+
     // Logger
     private static final Logger LOGGER = LogManager.getLogger(Referee.class);
 
     // Constructor
-    Referee(String name, int age) throws RefereeNotFoundException {
+    Referee(String name, int age, RefereeRole role) throws RefereeNotFoundException {
 
         super(name, age);
-
+        this.role = role;
         // Check if the referee name is empty
         if (Objects.equals(this.getName(), "")) {
 
@@ -30,6 +38,27 @@ class Referee extends Person implements Runnable {
         }
     }
 
+    // Getters and Setters
+    public RefereeRole getRole() {
+        return role;
+    }
+
+    public void setNextReferee(Referee nextReferee) {
+        this.nextReferee = nextReferee;
+    }
+
+    public Referee getNextReferee() {
+        return nextReferee;
+    }
+
+    // method to display the referees
+    public void displayReferees() {
+        if (this.getRole() == RefereeRole.MAIN || this.getRole() == RefereeRole.ASSISTANT) {
+            LOGGER.info(this.getName() + " as the " + this.getRole().toString() + " referee.");
+        } else if (this.getRole() == RefereeRole.LINE) {
+            LOGGER.info(this.getName() + " as a " + this.getRole().toString() + " referee.");
+        }
+    }
 
     // whistle() method
     public void whistle() {

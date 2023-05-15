@@ -7,6 +7,7 @@ package com.solvd.ta.lab2;
  * letting both homePlayers and awayPlayers play against each other.
  */
 
+import com.solvd.ta.lab2.collections.LinkedList;
 import com.solvd.ta.lab2.exceptions.MissingParameterException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +23,7 @@ class Match {
     private final Team HOME_TEAM;
     private final Team AWAY_TEAM;
 
-    private Referee referee;
+    private LinkedList<Referee> referees;
     private Stadium stadium;
 
     private static final Score SCORE = new Score();
@@ -30,14 +31,14 @@ class Match {
 
     /* This is the constructor of the Match class which is used to initialize the fields homePlayers, awayPlayers, referee
     and stadium with the values specified in the parameters. */
-    public Match(Team HOME_TEAM, Team AWAY_TEAM, Stadium stadium, Referee referee) {
+    public Match(Team HOME_TEAM, Team AWAY_TEAM, Stadium stadium, LinkedList<Referee> referees) {
         this.HOME_TEAM = HOME_TEAM;
         this.AWAY_TEAM = AWAY_TEAM;
         this.stadium = stadium;
-        this.referee = referee;
+        this.referees = referees;
 
         if (HOME_TEAM == null || AWAY_TEAM == null ||
-                stadium == null || referee == null) {
+                stadium == null || referees == null) {
             throw new MissingParameterException("One or more required parameters are missing.");
         }
 
@@ -45,13 +46,10 @@ class Match {
 
     // Setters and Getters from hw2 practice
 
-    public Referee getReferee() {
-        return referee;
+    public LinkedList<Referee> getReferee() {
+        return referees;
     }
 
-    public void setReferee(Referee referee) {
-        this.referee = referee;
-    }
 
     public Stadium getStadium() {
         return stadium;
@@ -76,7 +74,7 @@ class Match {
 
 
         // Referee starts the game
-        referee.whistle();
+        referees.get(0).whistle();
 
         // Randomly determine which team gets possession first
         ArrayList<Player> teamWithPossession;
@@ -115,7 +113,7 @@ class Match {
             if (count == 20) {
 
                 // The referee ends the match
-                referee.whistle();
+                referees.get(0).whistle();
                 LOGGER.info("The match is over!");
 
                 // Once the match ends, coaches cheer up their teams

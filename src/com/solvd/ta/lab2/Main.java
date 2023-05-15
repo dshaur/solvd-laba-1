@@ -6,6 +6,7 @@ package com.solvd.ta.lab2;
  */
 
 
+import com.solvd.ta.lab2.collections.LinkedList;
 import com.solvd.ta.lab2.exceptions.CoachNotFoundException;
 import com.solvd.ta.lab2.exceptions.RefereeNotFoundException;
 import com.solvd.ta.lab2.exceptions.StadiumCapacityException;
@@ -31,12 +32,11 @@ public class Main {
 
         // Initialize objects
         Stadium stadium = null;
-        Referee referee = null;
         Coach homeCoach = null;
         Coach awayCoach = null;
         Team homeTeam = null;
         Team awayTeam = null;
-
+        LinkedList<Referee> referees = null;
 
         // Create a stadium
         try {
@@ -48,7 +48,14 @@ public class Main {
 
         // Create a referee
         try {
-            referee = new Referee("John Smith", 45);
+            referees = new LinkedList<>();
+            referees.add(new Referee("John Smith", 45, Referee.RefereeRole.MAIN));
+            referees.add(new Referee("Jane Doe", 35, Referee.RefereeRole.ASSISTANT));
+            referees.add(new Referee("Bob Johnson", 40, Referee.RefereeRole.LINE));
+            referees.add(new Referee("Alice Williams", 38, Referee.RefereeRole.LINE));
+            referees.get(0).setNextReferee(referees.get(1));
+            referees.get(1).setNextReferee(referees.get(2));
+            referees.get(2).setNextReferee(referees.get(3));
         } catch (RefereeNotFoundException e) {
             LOGGER.error(e.getMessage());
             System.exit(1);
@@ -103,7 +110,14 @@ public class Main {
         }
 
         // Create a match
-        Match match = new Match(homeTeam, awayTeam, stadium, referee);
+        Match match = new Match(homeTeam, awayTeam, stadium, referees);
+
+        // ************** Display the Referees ****************** //
+        LOGGER.info("The Referees for today's match are: ");
+        referees.get(0).displayReferees();
+        referees.get(1).displayReferees();
+        referees.get(2).displayReferees();
+        referees.get(3).displayReferees();
 
         // ************** Display Lineups ****************** //
         // Home Lineup
