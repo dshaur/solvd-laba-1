@@ -81,15 +81,15 @@ public class Team implements Celebratable {
         return filteredPlayers;
     }
 
-    // Method to display filtered players (HW1)
+    // Method to display filtered players (java.util Lambdas)
     // public void displayFilteredPlayers(ArrayList<Player> filteredPlayers) {
-    //   LOGGER.info("Best StrikersPlayers over 30 in " + this.getName() + ":");
+    //   LOGGER.info("Players over 30 in " + this.getName() + ":");
     //   for (Player player : filteredPlayers) {
     //       LOGGER.info(player.getName());
     //  }
     // }
 
-    // Method to display filtered players (HW2)
+    // Method to display filtered players (Custom Lambdas)
     public void displayFilteredPlayers(ArrayList<Player> filteredPlayers) {
         LOGGER.info("Best Defenders in " + this.getName() + ":");
         for (Player player : filteredPlayers) {
