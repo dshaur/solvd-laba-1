@@ -51,4 +51,13 @@ class Defender extends Player implements Runnable, Substituable {
     public void substitute() {
         LOGGER.info(getName() + " is going off the field and being replaced by a substitute.");
     }
+
+    @Override
+    public String getPosition() {
+
+        return "Defender";
+    }
+
 }
+
+

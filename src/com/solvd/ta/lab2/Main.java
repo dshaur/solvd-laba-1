@@ -11,10 +11,12 @@ import com.solvd.ta.lab2.exceptions.CoachNotFoundException;
 import com.solvd.ta.lab2.exceptions.RefereeNotFoundException;
 import com.solvd.ta.lab2.exceptions.StadiumCapacityException;
 import com.solvd.ta.lab2.exceptions.TeamNotFoundException;
+import com.solvd.ta.lab2.interfaces.PlayerFilter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Main {
 
@@ -114,30 +116,80 @@ public class Main {
 
         // ************** Display the Referees ****************** //
         LOGGER.info("The Referees for today's match are: ");
-        referees.get(0).displayReferees();
-        referees.get(1).displayReferees();
-        referees.get(2).displayReferees();
-        referees.get(3).displayReferees();
+        for (int i = 0; i < referees.size(); i++) {
+            referees.get(i).displayReferees();
+        }
 
+        // ************************************** Lambda functions (java.util.function package) ************************************** //
         // ************** Display Lineups ****************** //
         // Home Lineup
-        LOGGER.info(homeTeam.getName() + " lineup:");
-        homeTeam.printTeamLineup();
+        //LOGGER.info(homeTeam.getName() + " lineup:");
+        //homeTeam.printTeamLineup();
 
         // Away Lineup
-        LOGGER.info(awayTeam.getName() + " lineup:");
-        awayTeam.printTeamLineup();
+        //LOGGER.info(awayTeam.getName() + " lineup:");
+        //awayTeam.printTeamLineup();
 
         // ************** Display team stats ************** //
         // Home Team Stats
-        LOGGER.info(homeTeam.getName() + " stats");
-        ArrayList<Player> homeFilteredPlayers = homeTeam.filterPlayers(player -> player.getAge() > 30);
-        homeTeam.displayFilteredPlayers(homeFilteredPlayers);
+        // LOGGER.info(homeTeam.getName() + " stats");
+        // ArrayList<Player> homeFilteredPlayers = homeTeam.filterPlayers(player -> player.getAge() > 30);
+        // homeTeam.displayFilteredPlayers(homeFilteredPlayers);
 
         // Away Team Stats
-        LOGGER.info(awayTeam.getName() + " stats");
-        ArrayList<Player> awayFilteredPlayers = awayTeam.filterPlayers(player -> player.getAge() > 30);
+        // LOGGER.info(awayTeam.getName() + " stats");
+        // ArrayList<Player> awayFilteredPlayers = awayTeam.filterPlayers(player -> player.getAge() > 30);
+        // awayTeam.displayFilteredPlayers(awayFilteredPlayers);
+
+
+        // ************************************** Custom Lambda functions ************************************** //
+
+
+        // Create a Comparator object that sorts players based on their position
+        // LOGGER.info("Creating position comparator");
+        Comparator<Player> positionComparator = Comparator.comparing(Player::getPosition);
+
+        // ****************** Display Lineups ****************** //
+
+        // Home Lineup
+        // Sort the home team's players based on the created Comparator
+        LOGGER.info(homeTeam.getName() + " lineup:");
+        homeTeam.sortPlayers(positionComparator);
+        for (Player player : homeTeam.getPlayers()) {
+            LOGGER.info(player.getName() + " - " + player.getPosition());
+        }
+
+        // Away Lineup
+        // Sort the away team's players based on the created Comparator
+        LOGGER.info(awayTeam.getName() + " lineup:");
+        awayTeam.sortPlayers(positionComparator);
+        for (Player player : awayTeam.getPlayers()) {
+            LOGGER.info(player.getName() + " - " + player.getPosition());
+        }
+
+        // Create a PlayerFilter object that filters players based on their position
+        // LOGGER.info("Creating player filter based on position");
+        PlayerFilter filter = (player) -> player.getPosition().equals("Defender");
+
+        // Filter the home team's players based on the created filter
+        // LOGGER.info("Filtering home team's players based on position");
+        ArrayList<Player> homeFilteredPlayers = homeTeam.filterPlayers(filter);
+        homeTeam.displayFilteredPlayers(homeFilteredPlayers);
+
+        // Filter the away team's players based on the created filter
+        // LOGGER.info("Filtering home team's players based on position");
+        ArrayList<Player> awayFilteredPlayers = awayTeam.filterPlayers(filter);
         awayTeam.displayFilteredPlayers(awayFilteredPlayers);
+
+
+        // ************** Display teams' stats ************** //
+
+        // Calculate the average age of the home team's players
+        LOGGER.info("Teams' Stats:");
+        double homeAverageAge = homeTeam.calculateAverageAge();
+        double awayAverageAge = awayTeam.calculateAverageAge();
+        LOGGER.info(homeTeam.getName() + " average age: " + (int) homeAverageAge);
+        LOGGER.info(awayTeam.getName() + " average age: " + (int) awayAverageAge);
 
         // Play the match
         match.playMatch();

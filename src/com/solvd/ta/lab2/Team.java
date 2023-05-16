@@ -2,12 +2,13 @@ package com.solvd.ta.lab2;
 
 import com.solvd.ta.lab2.exceptions.TeamNotFoundException;
 import com.solvd.ta.lab2.interfaces.Celebratable;
+import com.solvd.ta.lab2.interfaces.PlayerFilter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 public class Team implements Celebratable {
 
@@ -69,22 +70,39 @@ public class Team implements Celebratable {
         players.forEach(player -> LOGGER.info((player.getName())));
     }
 
-    // Method that filters players using Predicate
-    public ArrayList<Player> filterPlayers(Predicate<Player> predicate) {
-        ArrayList<Player> filteredPlayers = new ArrayList<>();
+    // Method that filters players
+    public ArrayList<Player> filterPlayers(PlayerFilter filter) {
+        ArrayList<Player> filteredPlayers = new ArrayList<Player>();
         for (Player player : players) {
-            if (predicate.test(player)) {
+            if (filter.filterPlayer(player)) {
                 filteredPlayers.add(player);
             }
         }
         return filteredPlayers;
     }
 
-    // Method to display filtered players
+    // Method to display filtered players (HW1)
+    // public void displayFilteredPlayers(ArrayList<Player> filteredPlayers) {
+    //   LOGGER.info("Best StrikersPlayers over 30 in " + this.getName() + ":");
+    //   for (Player player : filteredPlayers) {
+    //       LOGGER.info(player.getName());
+    //  }
+    // }
+
+    // Method to display filtered players (HW2)
     public void displayFilteredPlayers(ArrayList<Player> filteredPlayers) {
-        LOGGER.info("Players over 30 in " + this.getName() + ":");
+        LOGGER.info("Best Defenders in " + this.getName() + ":");
         for (Player player : filteredPlayers) {
             LOGGER.info(player.getName());
         }
+    }
+
+    public double calculateAverageAge() {
+        int sum = players.stream().mapToInt(Player::getAge).sum();
+        return (double) sum / (double) players.size();
+    }
+
+    public void sortPlayers(Comparator<Player> comparator) {
+        players.sort(comparator);
     }
 }

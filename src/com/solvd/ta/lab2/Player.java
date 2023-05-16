@@ -10,7 +10,7 @@ import com.solvd.ta.lab2.interfaces.Celebratable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-abstract class Player extends Person implements Celebratable {
+public abstract class Player extends Person implements Celebratable {
 
     // Logger
     private static final Logger LOGGER = LogManager.getLogger(Player.class);
@@ -52,5 +52,7 @@ abstract class Player extends Person implements Celebratable {
         LOGGER.info(getName() + " is celebrating!");
     }
 
-
+    public String getPosition() {
+        return null;
+    }
 }

@@ -44,5 +44,10 @@ class Goalkeeper extends Player implements Runnable, Substituable {
         LOGGER.info(getName() + " is going off the field and being replaced by a substitute.");
     }
 
+    @Override
+    public String getPosition() {
+
+        return "Goalkeeper";
+    }
 }
 
