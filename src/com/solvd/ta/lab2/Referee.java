@@ -15,7 +15,9 @@ import java.util.Objects;
 class Referee extends Person implements Runnable {
 
     public enum RefereeRole {
-        MAIN, ASSISTANT, LINE
+        MAIN,
+        ASSISTANT,
+        LINE
     }
 
     // Attributes and Variables
