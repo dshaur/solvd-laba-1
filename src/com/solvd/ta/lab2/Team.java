@@ -65,7 +65,7 @@ public class Team implements Celebratable {
         LOGGER.info(getName() + " players are celebrating!");
     }
 
-    // Method that prints each team's lineup using Consumer
+    // Method that prints each team's lineup using Consumer lambda
     public void printTeamLineup() {
         players.forEach(player -> LOGGER.info((player.getName())));
     }

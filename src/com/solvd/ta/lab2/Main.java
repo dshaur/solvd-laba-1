@@ -127,8 +127,8 @@ public class Main {
         //homeTeam.printTeamLineup();
 
         // Away Lineup
-        //LOGGER.info(awayTeam.getName() + " lineup:");
-        //awayTeam.printTeamLineup();
+        // LOGGER.info(awayTeam.getName() + " lineup:");
+        // awayTeam.printTeamLineup();
 
         // ************** Display team stats ************** //
         // Home Team Stats
