@@ -22,7 +22,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.solvd.ta.lab2.Main</mainClass>
+                            <mainClass>com.solvd.block1.lab2.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
